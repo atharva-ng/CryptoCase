@@ -56,7 +56,10 @@ class MyHomePage extends StatelessWidget {
 
 class storyPage extends StatefulWidget {
 
-  final storyList=[story([userTxt("assets/images/s1.png"),userTxt("assets/images/s2.png"),userTxt("assets/images/s3.png")],"assets/images/stonks.png")];
+  final storyList=[story([userTxt("assets/images/s1.png"),
+  userTxt("assets/images/s2.png"),
+  userTxt("assets/images/s3.png")],
+  "assets/images/stonks.png")];
   
   @override
   State<storyPage> createState() => _storyPageState();
