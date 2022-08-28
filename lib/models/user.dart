@@ -1,8 +1,7 @@
 import './userTxt.dart';
 
-class user{
-  final String loc="assets/images/wallpaper.png";
-  final List <userTxt> text;
-  final String name;
-  user(this.text,this.name);
+class story{
+  final List <userTxt> number;
+  final String pic;
+  story(this.number,this.pic);
 }

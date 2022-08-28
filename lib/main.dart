@@ -56,9 +56,7 @@ class MyHomePage extends StatelessWidget {
 
 class storyPage extends StatefulWidget {
 
-  final userList=[user([userTxt("Story1"),userTxt("Story2"),userTxt("Story3")],"user1"),
-    user([userTxt("Story1"),userTxt("Story2")],"user2")
-  ];
+  final storyList=[story([userTxt("assets/images/s1.png"),userTxt("assets/images/s2.png"),userTxt("assets/images/s3.png")],"assets/images/stonks.png")];
   
   @override
   State<storyPage> createState() => _storyPageState();
@@ -68,49 +66,39 @@ class _storyPageState extends State<storyPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title:Text("Risk",style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold ),),backgroundColor: Color.fromARGB(255, 208,236,252),elevation: 0),
+      appBar: AppBar(
+      leading: const BackButton(color: Colors.black,),
+      title: Text("Risk", style: TextStyle(color: Colors.black,fontSize: 30),),
+      backgroundColor:Color.fromARGB(255, 208,236,252),
+      elevation: 0,
+      //shadowColor:Color.fromARGB(0, 255, 255, 255) ,
+      ),
       body: Container(
         child: StoryPageView(
           itemBuilder:((context, pageIndex, storyIndex) {
-            final userNo = widget.userList[pageIndex];
-            final storyNo = userNo.text[storyIndex];
+            final userNo = widget.storyList[pageIndex];
+            final storyNo = userNo.number[storyIndex];
             return Stack(
               children: [
                 Positioned.fill(
-                  child: Container(color: Color.fromARGB(255, 208,236,252)),
+                  child: Container(color:Color.fromARGB(255, 208,236,252)),
                 ),
                 Positioned.fill(
-                  child: Column(
-                    children: [
-                      Container(
-                        height: 200,
-                        padding: EdgeInsets.all(50),
-                        child:Text(userNo.name,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-                      ),
-                      SizedBox(height: 200,),
-                      Container(
-                        height: 300,
-                        child:Text(storyNo.text,style: TextStyle(fontSize: 30,fontWeight: FontWeight.bold),),
-                      ),
-                    ],
-                  ),
+                  child: Image.asset(storyNo.text),
                 ),
-                ],
+              ],
             );
-            
           }
           ),
-          pageLength: widget.userList.length,
+          pageLength: widget.storyList.length,
           storyLength: (int pageIndex) {
-            return widget.userList[pageIndex].text.length;
-            return 0;
+            return widget.storyList[pageIndex].number.length;
           },
           onPageLimitReached: () {
            Navigator.pop(context); 
           }
-          
-    ),
-        )
+        ),
+      )
     );
   }
 }
@@ -122,3 +110,17 @@ class _storyPageState extends State<storyPage> {
         // height: 800,
         // ),]
 //         )
+
+// Column(
+//         children:<Widget> [
+//           Container(
+//             color: Color.fromARGB(255, 208,236,252),
+//             margin: EdgeInsets.fromLTRB(0, 63, 0, 0),
+//           child: Row(
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [         
+//               Container(child: Icon(Icons.chevron_left),width: 11.47, height: 19.92,),
+//               Container(child:Text("Risk",style: TextStyle(fontSize: 24,fontWeight: FontWeight.bold),),margin: EdgeInsets.only(left: 72),),
+//             ],
+//           ),
+//           ),
